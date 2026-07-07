@@ -14,3 +14,4 @@ CLAUDE.md
 .externalNativeBuild
 .cxx
 local.properties
+.kotlin
