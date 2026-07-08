@@ -1,0 +1,1 @@
+package kz.kbtu.wsp.core.data.repository

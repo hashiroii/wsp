@@ -6,7 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import kz.kbtu.wsp.ui.theme.WspTheme
+import kz.kbtu.wsp.core.ui.theme.WspTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable

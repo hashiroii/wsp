@@ -1,4 +1,4 @@
-package kz.kbtu.wsp.ui.theme
+package kz.kbtu.wsp.core.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
