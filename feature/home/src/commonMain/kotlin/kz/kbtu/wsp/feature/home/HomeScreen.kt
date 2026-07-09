@@ -8,13 +8,28 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun HomeScreen(
+    onNavigate: (HomeIntent) -> Unit = {},
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = remember { HomeViewModel() }
 ) {
     val state by viewModel.state.collectAsState()
     HomeScreenContent(
         state = state,
-        onIntent = viewModel::onIntent,
+        onIntent = { intent ->
+            when (intent) {
+                HomeIntent.OnAttestationClick,
+                HomeIntent.OnTranscriptClick,
+                HomeIntent.OnFxRegistrationClick,
+                HomeIntent.OnCourseRegistrationClick,
+                HomeIntent.OnAddDropClick,
+                HomeIntent.OnFinancialClick,
+                HomeIntent.OnNewsClick,
+                HomeIntent.OnAttendanceClick,
+                HomeIntent.OnMapClick,
+                HomeIntent.OnLostFoundClick -> onNavigate(intent)
+                else -> viewModel.onIntent(intent)
+            }
+        },
         modifier = modifier
     )
 }

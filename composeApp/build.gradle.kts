@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
@@ -44,6 +45,15 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(projects.core.ui)
             implementation(projects.feature.home)
+            implementation(projects.feature.settings)
+            implementation(projects.feature.profile)
+            implementation(projects.feature.schedule)
+            implementation(projects.feature.files)
+            implementation(projects.feature.financial)
+            implementation(projects.feature.grades)
+            implementation(projects.feature.registration)
+            implementation(libs.navigation.compose)
+            implementation(libs.kotlinx.serialization.core)
         }
         androidUnitTest.dependencies {
             implementation(libs.junit)

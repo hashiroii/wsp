@@ -17,7 +17,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
+import kz.kbtu.wsp.core.ui.icons.WspIcons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.MoreVert
@@ -192,7 +192,7 @@ private fun QuickAccessGrid(onIntent: (HomeIntent) -> Unit) {
             QuickAccessCard(
                 title = stringResource(Res.string.quick_financial),
                 backgroundColor = Color(0xFFF59E0B),
-                icon = Icons.Default.AccountBox,
+                icon = WspIcons.AccountBalance,
                 onClick = { onIntent(HomeIntent.OnFinancialClick) },
                 modifier = Modifier.weight(1f)
             )
