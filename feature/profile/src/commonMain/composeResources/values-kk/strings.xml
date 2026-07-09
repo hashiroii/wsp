@@ -1,0 +1,39 @@
+<resources>
+    <string name="profile_section_personal">Жеке ақпарат</string>
+    <string name="profile_section_academic">Академиялық ақпарат</string>
+    <string name="profile_section_contact">Байланыс ақпараты</string>
+    <string name="profile_section_more">Қосымша ақпарат</string>
+
+    <string name="profile_field_first_name">Аты</string>
+    <string name="profile_field_last_name">Тегі</string>
+    <string name="profile_field_middle_name">Әкесінің аты</string>
+    <string name="profile_field_iin">ЖСН</string>
+    <string name="profile_field_birth_date">Туған күні</string>
+    <string name="profile_field_sex">Жынысы</string>
+    <string name="profile_field_marital_status">Отбасылық жағдайы</string>
+    <string name="profile_field_student_id">Студент куәлігі</string>
+    <string name="profile_field_login">Логин</string>
+    <string name="profile_field_nationality">Ұлты</string>
+    <string name="profile_field_citizenship">Азаматтығы</string>
+    <string name="profile_field_resident">Резидент</string>
+    <string name="profile_field_category">Санаты</string>
+    <string name="profile_field_dorm">Жатақхана</string>
+    <string name="profile_field_entrance_year">Түсу жылы</string>
+    <string name="profile_field_study_form">Оқу нысаны</string>
+    <string name="profile_field_email">Электрондық пошта</string>
+    <string name="profile_field_email_kbtu">БГТУ поштасы</string>
+    <string name="profile_field_phone">Ұялы телефон</string>
+
+    <string name="profile_nav_main_info">Негізгі ақпарат</string>
+    <string name="profile_nav_edu_direction">Білім беру бағыты</string>
+    <string name="profile_nav_education">Білім</string>
+    <string name="profile_nav_documents">Құжаттар</string>
+    <string name="profile_nav_addresses">Мекенжайлар</string>
+    <string name="profile_nav_medical">Медтексеру</string>
+    <string name="profile_nav_unt">ҰБТ</string>
+    <string name="profile_nav_parents">Ата-ана</string>
+    <string name="profile_nav_other_docs">Басқалар</string>
+
+    <string name="profile_yes">Иә</string>
+    <string name="profile_no">Жоқ</string>
+</resources>

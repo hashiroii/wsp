@@ -1,15 +1,20 @@
 package kz.kbtu.wsp.feature.profile
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun ProfileScreen(modifier: Modifier = Modifier) {
-    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("Profile — coming soon")
-    }
+fun ProfileScreen(
+    modifier: Modifier = Modifier,
+    viewModel: ProfileViewModel = koinViewModel()
+) {
+    val state by viewModel.state.collectAsState()
+    ProfileScreenContent(
+        state = state,
+        onIntent = viewModel::onIntent,
+        modifier = modifier
+    )
 }

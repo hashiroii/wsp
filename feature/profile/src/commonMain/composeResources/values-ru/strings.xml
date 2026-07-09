@@ -1,0 +1,39 @@
+<resources>
+    <string name="profile_section_personal">Личная информация</string>
+    <string name="profile_section_academic">Академическая информация</string>
+    <string name="profile_section_contact">Контактная информация</string>
+    <string name="profile_section_more">Дополнительно</string>
+
+    <string name="profile_field_first_name">Имя</string>
+    <string name="profile_field_last_name">Фамилия</string>
+    <string name="profile_field_middle_name">Отчество</string>
+    <string name="profile_field_iin">ИИН</string>
+    <string name="profile_field_birth_date">Дата рождения</string>
+    <string name="profile_field_sex">Пол</string>
+    <string name="profile_field_marital_status">Семейное положение</string>
+    <string name="profile_field_student_id">Студенческий билет</string>
+    <string name="profile_field_login">Логин</string>
+    <string name="profile_field_nationality">Национальность</string>
+    <string name="profile_field_citizenship">Гражданство</string>
+    <string name="profile_field_resident">Резидент</string>
+    <string name="profile_field_category">Категория</string>
+    <string name="profile_field_dorm">Общежитие</string>
+    <string name="profile_field_entrance_year">Год поступления</string>
+    <string name="profile_field_study_form">Форма обучения</string>
+    <string name="profile_field_email">Электронная почта</string>
+    <string name="profile_field_email_kbtu">Почта КБТУ</string>
+    <string name="profile_field_phone">Мобильный телефон</string>
+
+    <string name="profile_nav_main_info">Основная информация</string>
+    <string name="profile_nav_edu_direction">Направление обучения</string>
+    <string name="profile_nav_education">Образование</string>
+    <string name="profile_nav_documents">Документы</string>
+    <string name="profile_nav_addresses">Адреса</string>
+    <string name="profile_nav_medical">Медосмотр</string>
+    <string name="profile_nav_unt">ЕНТ</string>
+    <string name="profile_nav_parents">О родителях</string>
+    <string name="profile_nav_other_docs">Прочее</string>
+
+    <string name="profile_yes">Да</string>
+    <string name="profile_no">Нет</string>
+</resources>

@@ -57,4 +57,68 @@ object WspIcons {
             fill = SolidColor(Color(0xFF000000))
         ).build()
     }
+
+    val Person: ImageVector by lazy {
+        ImageVector.Builder("Person", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val School: ImageVector by lazy {
+        ImageVector.Builder("School", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val Book: ImageVector by lazy {
+        ImageVector.Builder("Book", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val Description: ImageVector by lazy {
+        ImageVector.Builder("Description", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val LocationOn: ImageVector by lazy {
+        ImageVector.Builder("LocationOn", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val LocalHospital: ImageVector by lazy {
+        ImageVector.Builder("LocalHospital", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val Assignment: ImageVector by lazy {
+        ImageVector.Builder("Assignment", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val Group: ImageVector by lazy {
+        ImageVector.Builder("Group", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
 }

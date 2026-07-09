@@ -1,0 +1,39 @@
+<resources>
+    <string name="profile_section_personal">Personal Information</string>
+    <string name="profile_section_academic">Academic Information</string>
+    <string name="profile_section_contact">Contact Information</string>
+    <string name="profile_section_more">More Information</string>
+
+    <string name="profile_field_first_name">First Name</string>
+    <string name="profile_field_last_name">Last Name</string>
+    <string name="profile_field_middle_name">Middle Name</string>
+    <string name="profile_field_iin">IIN</string>
+    <string name="profile_field_birth_date">Birth Date</string>
+    <string name="profile_field_sex">Sex</string>
+    <string name="profile_field_marital_status">Marital Status</string>
+    <string name="profile_field_student_id">Student ID</string>
+    <string name="profile_field_login">Login</string>
+    <string name="profile_field_nationality">Nationality</string>
+    <string name="profile_field_citizenship">Citizenship</string>
+    <string name="profile_field_resident">Resident</string>
+    <string name="profile_field_category">Category</string>
+    <string name="profile_field_dorm">Dorm</string>
+    <string name="profile_field_entrance_year">Entrance Year</string>
+    <string name="profile_field_study_form">Study Form</string>
+    <string name="profile_field_email">Email</string>
+    <string name="profile_field_email_kbtu">KBTU Email</string>
+    <string name="profile_field_phone">Mobile Phone</string>
+
+    <string name="profile_nav_main_info">Main Information</string>
+    <string name="profile_nav_edu_direction">Education Direction</string>
+    <string name="profile_nav_education">Education</string>
+    <string name="profile_nav_documents">Documents</string>
+    <string name="profile_nav_addresses">Addresses</string>
+    <string name="profile_nav_medical">Medical Exam</string>
+    <string name="profile_nav_unt">UNT</string>
+    <string name="profile_nav_parents">Parents Info</string>
+    <string name="profile_nav_other_docs">Other Docs</string>
+
+    <string name="profile_yes">Yes</string>
+    <string name="profile_no">No</string>
+</resources>
