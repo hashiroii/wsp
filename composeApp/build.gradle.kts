@@ -43,6 +43,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(projects.core.ui)
+            implementation(projects.feature.home)
         }
         androidUnitTest.dependencies {
             implementation(libs.junit)
@@ -82,6 +83,12 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+}
+
+compose {
+    resources {
+        packageOfResClass = "kz.kbtu.wsp.resources"
     }
 }
 

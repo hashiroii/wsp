@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_home">Басты</string>
+    <string name="nav_schedule">Кесте</string>
+    <string name="nav_files">Файлдар</string>
+
+    <string name="top_bar_home">Басты бет</string>
+    <string name="top_bar_schedule">Кесте</string>
+    <string name="top_bar_files">Файлдар</string>
+
+    <string name="cd_language">Тілді өзгерту</string>
+    <string name="cd_settings">Параметрлер</string>
+    <string name="cd_profile">Профиль</string>
+</resources>

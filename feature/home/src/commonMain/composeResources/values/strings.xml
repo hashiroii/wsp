@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="section_news">News</string>
+    <string name="news_placeholder">Week 25 is underway. Important: the course withdrawal (Withdrawal) deadline is approaching. Tap to read more.</string>
+
+    <string name="section_attendance">Attendance</string>
+    <string name="attendance_no_active">No active class right now</string>
+    <string name="attendance_active">Class in progress — mark your attendance</string>
+
+    <string name="quick_map">KBTU Map</string>
+    <string name="quick_lost_found">Lost &amp; Found</string>
+    <string name="quick_financial">Financial</string>
+    <string name="quick_coming_soon">Coming Soon</string>
+
+    <string name="section_grades">Grades</string>
+    <string name="gpa_overall">Overall GPA</string>
+    <string name="grades_attestation">Attestation</string>
+    <string name="grades_transcript">Transcript</string>
+
+    <string name="section_registration">Registration</string>
+    <string name="reg_fx">FX Registration</string>
+    <string name="reg_disciplines">Course Registration</string>
+    <string name="reg_add_drop">Add / Drop</string>
+</resources>

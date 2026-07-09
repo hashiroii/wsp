@@ -2,13 +2,13 @@ package kz.kbtu.wsp.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Primary – Blue
-val Blue10 = Color(0xFF001C3B)
-val Blue20 = Color(0xFF003062)
-val Blue30 = Color(0xFF00468C)
-val Blue40 = Color(0xFF1565C0)
-val Blue80 = Color(0xFF90CAF9)
-val Blue90 = Color(0xFFBBDEFB)
+// KBTU Brand Navy Blue (#003087)
+val Navy10 = Color(0xFF001849)
+val Navy20 = Color(0xFF002D7A)
+val Navy30 = Color(0xFF003087)
+val Navy40 = Color(0xFF2158C5)
+val Navy80 = Color(0xFFADC6FF)
+val Navy90 = Color(0xFFD9E2FF)
 
 // Secondary – Teal
 val Teal10 = Color(0xFF00201E)

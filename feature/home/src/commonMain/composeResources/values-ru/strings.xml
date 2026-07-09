@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="section_news">Новости</string>
+    <string name="news_placeholder">Идёт 25-я учебная неделя. Важно: приближается срок подачи заявок на отказ от дисциплин (Withdrawal). Нажмите для подробностей.</string>
+
+    <string name="section_attendance">Посещаемость</string>
+    <string name="attendance_no_active">Активных занятий нет</string>
+    <string name="attendance_active">Идёт занятие — отметьте посещение</string>
+
+    <string name="quick_map">Карта КБТУ</string>
+    <string name="quick_lost_found">Бюро находок</string>
+    <string name="quick_financial">Финансы</string>
+    <string name="quick_coming_soon">Скоро</string>
+
+    <string name="section_grades">Оценки</string>
+    <string name="gpa_overall">Общий GPA</string>
+    <string name="grades_attestation">Аттестация</string>
+    <string name="grades_transcript">Транскрипт</string>
+
+    <string name="section_registration">Регистрация</string>
+    <string name="reg_fx">Регистрация на FX</string>
+    <string name="reg_disciplines">Регистрация на дисциплины</string>
+    <string name="reg_add_drop">Add / Drop дисциплин</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_home">Главная</string>
+    <string name="nav_schedule">Расписание</string>
+    <string name="nav_files">Файлы</string>
+
+    <string name="top_bar_home">Главная</string>
+    <string name="top_bar_schedule">Расписание</string>
+    <string name="top_bar_files">Файлы</string>
+
+    <string name="cd_language">Сменить язык</string>
+    <string name="cd_settings">Настройки</string>
+    <string name="cd_profile">Профиль</string>
+</resources>
