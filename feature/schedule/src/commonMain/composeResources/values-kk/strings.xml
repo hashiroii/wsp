@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_student">Студент</string>
+    <string name="tab_exam">Емтихандар</string>
+    <string name="tab_subject">Пәндер</string>
+</resources>

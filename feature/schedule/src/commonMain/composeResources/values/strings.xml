@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_student">Student</string>
+    <string name="tab_exam">Exams</string>
+    <string name="tab_subject">Subjects</string>
+</resources>
