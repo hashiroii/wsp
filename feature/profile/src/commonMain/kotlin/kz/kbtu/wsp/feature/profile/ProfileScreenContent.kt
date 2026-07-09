@@ -14,14 +14,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -79,10 +77,13 @@ import kz.kbtu.wsp.feature.profile.resources.profile_yes
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+// label / primary value / optional EN translation / optional dimmed secondary line / bold flag
 private data class FieldData(
     val label: String,
     val value: String,
-    val valueEn: String? = null
+    val valueEn: String? = null,
+    val secondary: String? = null,
+    val bold: Boolean = false
 )
 
 private data class SectionItem(
@@ -91,6 +92,9 @@ private data class SectionItem(
     val label: String,
     val isActive: Boolean = false
 )
+
+private fun formatEntranceYear(year: String): String =
+    if (year.length == 8 && year.all { it.isDigit() }) "${year.take(4)}-${year.drop(4)}" else year
 
 @Composable
 fun ProfileScreenContent(
@@ -146,7 +150,7 @@ fun ProfileScreenContent(
                             profile.middleNameEn
                         ))
                     }
-                    add(FieldData(stringResource(Res.string.profile_field_iin), profile.iin))
+                    add(FieldData(stringResource(Res.string.profile_field_iin), profile.iin, bold = true))
                     add(FieldData(stringResource(Res.string.profile_field_birth_date), profile.birthDate))
                     add(FieldData(stringResource(Res.string.profile_field_sex), profile.sex))
                     add(FieldData(stringResource(Res.string.profile_field_marital_status), profile.maritalStatus))
@@ -158,19 +162,26 @@ fun ProfileScreenContent(
             ProfileInfoSection(
                 title = stringResource(Res.string.profile_section_academic),
                 fields = listOf(
-                    FieldData(stringResource(Res.string.profile_field_student_id), profile.studentId),
-                    FieldData(stringResource(Res.string.profile_field_login), profile.login),
+                    FieldData(stringResource(Res.string.profile_field_student_id), profile.studentId, bold = true),
+                    FieldData(stringResource(Res.string.profile_field_login), profile.login, bold = true),
                     FieldData(stringResource(Res.string.profile_field_nationality), profile.nationality),
                     FieldData(
-                        stringResource(Res.string.profile_field_citizenship),
-                        "${profile.citizenship} · $resident: ${if (profile.isResident) yes else no}"
+                        label = stringResource(Res.string.profile_field_citizenship),
+                        value = profile.citizenship,
+                        secondary = "$resident: ${if (profile.isResident) yes else no}"
                     ),
                     FieldData(
-                        stringResource(Res.string.profile_field_category),
-                        "${profile.category} · $dorm: ${if (profile.needsDorm) yes else no}"
+                        label = stringResource(Res.string.profile_field_category),
+                        value = profile.category,
+                        secondary = "$dorm: ${if (profile.needsDorm) yes else no}"
                     ),
-                    FieldData(stringResource(Res.string.profile_field_entrance_year), profile.entranceYear),
-                    FieldData(stringResource(Res.string.profile_field_study_form), profile.studyForm)
+                    FieldData(stringResource(Res.string.profile_field_entrance_year), formatEntranceYear(profile.entranceYear)),
+                    FieldData(
+                        label = stringResource(Res.string.profile_field_study_form),
+                        value = profile.studyType,
+                        secondary = profile.studyForm.takeIf { it.isNotEmpty() },
+                        bold = true
+                    )
                 )
             )
         }
@@ -180,8 +191,8 @@ fun ProfileScreenContent(
                 title = stringResource(Res.string.profile_section_contact),
                 fields = listOf(
                     FieldData(stringResource(Res.string.profile_field_email), profile.email),
-                    FieldData(stringResource(Res.string.profile_field_email_kbtu), profile.emailKbtu),
-                    FieldData(stringResource(Res.string.profile_field_phone), profile.mobilePhone)
+                    FieldData(stringResource(Res.string.profile_field_email_kbtu), profile.emailKbtu, bold = true),
+                    FieldData(stringResource(Res.string.profile_field_phone), profile.mobilePhone, bold = true)
                 )
             )
         }
@@ -229,7 +240,7 @@ private fun ProfileHeader(
             .fillMaxWidth()
             .padding(vertical = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(6.dp)
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         ProfileAvatar(
             initials = initials,
@@ -237,17 +248,18 @@ private fun ProfileHeader(
             textStyle = MaterialTheme.typography.headlineMedium,
             onClick = onPhotoClick
         )
+        Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = "${profile.lastName} ${profile.firstName}",
             style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface,
             textAlign = TextAlign.Center
         )
         if (profile.lastNameEn.isNotEmpty() || profile.firstNameEn.isNotEmpty()) {
             Text(
                 text = "${profile.lastNameEn} ${profile.firstNameEn}",
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center
             )
@@ -255,6 +267,14 @@ private fun ProfileHeader(
         if (profile.studentId.isNotEmpty()) {
             Text(
                 text = profile.studentId,
+                style = MaterialTheme.typography.bodySmall,
+                fontWeight = FontWeight.SemiBold,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+        if (profile.entranceYear.isNotEmpty()) {
+            Text(
+                text = formatEntranceYear(profile.entranceYear),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -294,13 +314,15 @@ private fun ProfileInfoSection(
     modifier: Modifier = Modifier
 ) {
     ElevatedCard(modifier = modifier.fillMaxWidth()) {
-        Column {
+        Column(horizontalAlignment = Alignment.Start) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 14.dp, bottom = 10.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp, end = 16.dp, top = 14.dp, bottom = 10.dp)
             )
             HorizontalDivider()
             fields.forEachIndexed { i, field ->
@@ -322,23 +344,27 @@ private fun ProfileInfoField(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 10.dp),
+        horizontalAlignment = Alignment.Start,
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         Text(
             text = field.label,
             style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Start
         )
         Text(
             text = field.value,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface
+            fontWeight = if (field.bold) FontWeight.Bold else FontWeight.Medium,
+            color = MaterialTheme.colorScheme.onSurface,
+            textAlign = TextAlign.Start
         )
         if (field.valueEn != null) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(6.dp),
-                modifier = Modifier.padding(top = 2.dp)
+                modifier = Modifier.padding(top = 1.dp)
             ) {
                 Text(
                     text = "EN",
@@ -354,9 +380,19 @@ private fun ProfileInfoField(
                 Text(
                     text = field.valueEn,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Start
                 )
             }
+        }
+        if (field.secondary != null) {
+            Text(
+                text = field.secondary,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Start,
+                modifier = Modifier.padding(top = 1.dp)
+            )
         }
     }
 }
@@ -472,7 +508,7 @@ private fun PhotoPreviewDialog(
                 if (profile.lastNameEn.isNotEmpty() || profile.firstNameEn.isNotEmpty()) {
                     Text(
                         text = "${profile.lastNameEn} ${profile.firstNameEn}",
-                        color = Color.White.copy(alpha = 0.7f),
+                        color = Color.White.copy(alpha = 0.6f),
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center
                     )
@@ -490,23 +526,24 @@ private fun ProfileScreenContentPreview() {
             profile = ProfileData(
                 firstName = "Магжан",
                 firstNameEn = "Magzhan",
-                lastName = "Асхат",
-                lastNameEn = "Askhat",
+                lastName = "Мубарак",
+                lastNameEn = "Mubarak",
                 iin = "040101XXXXXX",
                 studentId = "2023XXXX",
-                login = "m.askhat",
+                login = "m.mubarak",
                 birthDate = "01.01.2004",
                 sex = "Мужской",
-                maritalStatus = "Холост",
+                maritalStatus = "не состоит в браке",
                 nationality = "Казах",
                 citizenship = "Казахстан",
                 isResident = true,
                 email = "jasanasxat2@gmail.com",
-                emailKbtu = "m.askhat@kbtu.kz",
+                emailKbtu = "m.mubarak@kbtu.kz",
                 mobilePhone = "7XXXXXXXXXX",
                 category = "Студент",
                 needsDorm = false,
                 entranceYear = "2023-2024",
+                studyType = "Бакалавр",
                 studyForm = "лет: 4, сем. оконч. 2"
             )
         ),

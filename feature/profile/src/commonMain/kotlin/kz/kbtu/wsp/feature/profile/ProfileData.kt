@@ -23,5 +23,6 @@ data class ProfileData(
     val category: String = "",
     val needsDorm: Boolean = false,
     val entranceYear: String = "",
+    val studyType: String = "",
     val studyForm: String = ""
 )

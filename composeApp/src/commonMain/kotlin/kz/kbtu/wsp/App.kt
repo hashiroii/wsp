@@ -1,5 +1,7 @@
 package kz.kbtu.wsp
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -7,6 +9,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -15,11 +18,17 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import kz.kbtu.wsp.util.setLocale
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -56,6 +65,39 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun App() {
     WspTheme {
+        var showLanguagePicker by remember { mutableStateOf(false) }
+
+        if (showLanguagePicker) {
+            AlertDialog(
+                onDismissRequest = { showLanguagePicker = false },
+                title = { Text("Language / Язык / Тіл") },
+                text = {
+                    Column {
+                        listOf(
+                            "en" to "English",
+                            "ru" to "Русский",
+                            "kk" to "Қазақша"
+                        ).forEach { (code, label) ->
+                            TextButton(
+                                onClick = {
+                                    setLocale(code)
+                                    showLanguagePicker = false
+                                },
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Text(
+                                    text = label,
+                                    modifier = Modifier.fillMaxWidth(),
+                                    textAlign = TextAlign.Start
+                                )
+                            }
+                        }
+                    }
+                },
+                confirmButton = {}
+            )
+        }
+
         val navController = rememberNavController()
         val backStackEntry by navController.currentBackStackEntryAsState()
         val currentDest = backStackEntry?.destination
@@ -99,7 +141,7 @@ fun App() {
                         actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
                     ),
                     actions = {
-                        IconButton(onClick = {}) {
+                        IconButton(onClick = { showLanguagePicker = true }) {
                             Icon(WspIcons.Language, contentDescription = stringResource(Res.string.cd_language))
                         }
                         IconButton(onClick = { navController.navigate(Route.Settings) }) {

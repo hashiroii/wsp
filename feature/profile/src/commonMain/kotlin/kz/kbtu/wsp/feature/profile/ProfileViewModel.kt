@@ -31,6 +31,7 @@ class ProfileViewModel : ViewModel() {
                 category = "Студент",
                 needsDorm = false,
                 entranceYear = "2023-2024",
+                studyType = "Бакалавр",
                 studyForm = "лет: 4, сем. оконч. 2"
             )
         )
