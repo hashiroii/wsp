@@ -3,14 +3,14 @@ package kz.kbtu.wsp.feature.home
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun HomeScreen(
     onNavigate: (HomeIntent) -> Unit = {},
     modifier: Modifier = Modifier,
-    viewModel: HomeViewModel = remember { HomeViewModel() }
+    viewModel: HomeViewModel = koinViewModel()
 ) {
     val state by viewModel.state.collectAsState()
     HomeScreenContent(

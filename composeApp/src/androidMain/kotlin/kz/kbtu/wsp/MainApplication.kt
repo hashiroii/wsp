@@ -1,7 +1,14 @@
 package kz.kbtu.wsp
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import kz.kbtu.wsp.di.initKoin
+import org.koin.android.ext.koin.androidContext
 
-@HiltAndroidApp
-class MainApplication : Application()
+class MainApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        initKoin {
+            androidContext(this@MainApplication)
+        }
+    }
+}

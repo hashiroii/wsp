@@ -25,6 +25,9 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.jetbrains.lifecycle.viewmodel)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.koin.core)
+            implementation(libs.koin.core.viewmodel)
+            implementation(libs.koin.compose.viewmodel)
             implementation(projects.core.ui)
         }
         androidMain.dependencies {
