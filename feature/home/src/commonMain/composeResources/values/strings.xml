@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="section_news">News</string>
+    <string name="current_week">Week %1$d</string>
     <string name="news_placeholder">Week 25 is underway. Important: the course withdrawal (Withdrawal) deadline is approaching. Tap to read more.</string>
 
     <string name="section_attendance">Attendance</string>

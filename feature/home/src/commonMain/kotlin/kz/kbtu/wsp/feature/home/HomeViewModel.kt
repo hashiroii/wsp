@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class HomeViewModel : ViewModel() {
 
-    private val _state = MutableStateFlow(HomeState())
+    private val _state = MutableStateFlow(HomeState(currentWeek = currentWeekOfYear()))
     val state: StateFlow<HomeState> = _state.asStateFlow()
 
     fun onIntent(intent: HomeIntent) {

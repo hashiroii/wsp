@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="section_news">Жаңалықтар</string>
+    <string name="current_week">%1$d-апта</string>
     <string name="news_placeholder">25-ші оқу аптасы жүріп жатыр. Маңызды: пәннен бас тарту (Withdrawal) мерзімі жақындауда. Толығырақ оқу үшін басыңыз.</string>
 
     <string name="section_attendance">Қатысу</string>

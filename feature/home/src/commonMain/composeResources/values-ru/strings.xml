@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="section_news">Новости</string>
+    <string name="current_week">Неделя %1$d</string>
     <string name="news_placeholder">Идёт 25-я учебная неделя. Важно: приближается срок подачи заявок на отказ от дисциплин (Withdrawal). Нажмите для подробностей.</string>
 
     <string name="section_attendance">Посещаемость</string>

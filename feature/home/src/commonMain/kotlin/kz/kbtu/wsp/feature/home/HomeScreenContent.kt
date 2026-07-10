@@ -52,6 +52,7 @@ import kz.kbtu.wsp.feature.home.resources.reg_disciplines
 import kz.kbtu.wsp.feature.home.resources.reg_fx
 import kz.kbtu.wsp.feature.home.resources.section_attendance
 import kz.kbtu.wsp.feature.home.resources.section_grades
+import kz.kbtu.wsp.feature.home.resources.current_week
 import kz.kbtu.wsp.feature.home.resources.section_news
 import kz.kbtu.wsp.feature.home.resources.section_registration
 import kz.kbtu.wsp.core.ui.theme.WspTheme
@@ -72,6 +73,14 @@ fun HomeScreenContent(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         NewsCard(onClick = { onIntent(HomeIntent.OnNewsClick) })
+        if (state.currentWeek > 0) {
+            Text(
+                text = stringResource(Res.string.current_week, state.currentWeek),
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 4.dp)
+            )
+        }
         AttendanceCard(
             isActive = state.isAttendanceActive,
             onClick = { onIntent(HomeIntent.OnAttendanceClick) }
