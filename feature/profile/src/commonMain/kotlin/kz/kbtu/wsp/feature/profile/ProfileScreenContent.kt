@@ -150,7 +150,7 @@ fun ProfileScreenContent(
                             profile.middleNameEn
                         ))
                     }
-                    add(FieldData(stringResource(Res.string.profile_field_iin), profile.iin, bold = true))
+                    add(FieldData(stringResource(Res.string.profile_field_iin), profile.iin))
                     add(FieldData(stringResource(Res.string.profile_field_birth_date), profile.birthDate))
                     add(FieldData(stringResource(Res.string.profile_field_sex), profile.sex))
                     add(FieldData(stringResource(Res.string.profile_field_marital_status), profile.maritalStatus))
@@ -264,21 +264,6 @@ private fun ProfileHeader(
                 textAlign = TextAlign.Center
             )
         }
-        if (profile.studentId.isNotEmpty()) {
-            Text(
-                text = profile.studentId,
-                style = MaterialTheme.typography.bodySmall,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
-        if (profile.entranceYear.isNotEmpty()) {
-            Text(
-                text = formatEntranceYear(profile.entranceYear),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        }
     }
 }
 
@@ -328,7 +313,7 @@ private fun ProfileInfoSection(
             fields.forEachIndexed { i, field ->
                 ProfileInfoField(field)
                 if (i < fields.lastIndex) {
-                    HorizontalDivider(modifier = Modifier.padding(start = 16.dp))
+                    HorizontalDivider()
                 }
             }
         }
