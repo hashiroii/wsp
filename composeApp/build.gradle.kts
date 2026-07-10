@@ -64,7 +64,6 @@ kotlin {
         androidInstrumentedTest.dependencies {
             implementation(libs.androidx.junit)
             implementation(libs.androidx.espresso.core)
-            implementation(libs.androidx.compose.ui.test.junit4)
         }
     }
 }
@@ -107,5 +106,4 @@ compose {
 
 dependencies {
     debugImplementation(compose.uiTooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
