@@ -34,10 +34,10 @@ private val LightColorScheme = lightColorScheme(
 )
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Navy80,
-    onPrimary = Navy20,
-    primaryContainer = Navy30,
-    onPrimaryContainer = Navy90,
+    primary = Navy40,
+    onPrimary = Grey99,
+    primaryContainer = Navy10,
+    onPrimaryContainer = Navy80,
     secondary = Teal80,
     onSecondary = Teal20,
     secondaryContainer = Teal30,
