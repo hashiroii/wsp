@@ -1,0 +1,12 @@
+<resources>
+    <string name="settings_section_appearance">Сыртқы түр</string>
+    <string name="settings_section_notifications">Хабарландырулар</string>
+
+    <string name="settings_theme_label">Тақырып</string>
+    <string name="settings_theme_system">Жүйелік</string>
+    <string name="settings_theme_light">Ашық</string>
+    <string name="settings_theme_dark">Қараңғы</string>
+
+    <string name="settings_notifications_description">Жүйелік параметрлерде қосымшаның хабарландыру рұқсаттарын басқарыңыз.</string>
+    <string name="settings_notifications_open_button">Хабарландыру параметрлерін ашу</string>
+</resources>

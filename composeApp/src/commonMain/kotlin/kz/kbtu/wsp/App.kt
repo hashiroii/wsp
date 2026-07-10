@@ -28,7 +28,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.foundation.isSystemInDarkTheme
+import kz.kbtu.wsp.core.ui.ThemePreference
+import kz.kbtu.wsp.core.ui.ThemeManager
+import kz.kbtu.wsp.util.openNotificationSettings
 import kz.kbtu.wsp.util.setLocale
+import org.koin.compose.koinInject
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -64,7 +69,14 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun App() {
-    WspTheme {
+    val themeManager: ThemeManager = koinInject()
+    val darkTheme = when (themeManager.preference) {
+        ThemePreference.Dark -> true
+        ThemePreference.Light -> false
+        ThemePreference.System -> isSystemInDarkTheme()
+    }
+
+    WspTheme(darkTheme = darkTheme) {
         var showLanguagePicker by remember { mutableStateOf(false) }
 
         if (showLanguagePicker) {
@@ -216,7 +228,9 @@ fun App() {
                 }
                 composable<Route.Schedule> { ScheduleScreen() }
                 composable<Route.Files> { FilesScreen() }
-                composable<Route.Settings> { SettingsScreen() }
+                composable<Route.Settings> {
+                    SettingsScreen(onOpenNotificationSettings = { openNotificationSettings() })
+                }
                 composable<Route.Profile> { ProfileScreen() }
                 composable<Route.Financial> { FinancialScreen() }
                 composable<Route.Attestation> { AttestationScreen() }

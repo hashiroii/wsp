@@ -1,0 +1,12 @@
+<resources>
+    <string name="settings_section_appearance">Appearance</string>
+    <string name="settings_section_notifications">Notifications</string>
+
+    <string name="settings_theme_label">Theme</string>
+    <string name="settings_theme_system">System Default</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+
+    <string name="settings_notifications_description">Manage notification permissions for this app in system settings.</string>
+    <string name="settings_notifications_open_button">Open Notification Settings</string>
+</resources>

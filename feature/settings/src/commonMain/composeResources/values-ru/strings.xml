@@ -1,0 +1,12 @@
+<resources>
+    <string name="settings_section_appearance">Внешний вид</string>
+    <string name="settings_section_notifications">Уведомления</string>
+
+    <string name="settings_theme_label">Тема</string>
+    <string name="settings_theme_system">Системная</string>
+    <string name="settings_theme_light">Светлая</string>
+    <string name="settings_theme_dark">Тёмная</string>
+
+    <string name="settings_notifications_description">Управляйте разрешениями на уведомления в системных настройках.</string>
+    <string name="settings_notifications_open_button">Открыть настройки уведомлений</string>
+</resources>
