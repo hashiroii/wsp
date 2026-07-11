@@ -122,10 +122,42 @@ object WspIcons {
             ).build()
     }
 
+    val ViewList: ImageVector by lazy {
+        ImageVector.Builder("ViewList", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val GridView: ImageVector by lazy {
+        ImageVector.Builder("GridView", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v8h8V3h-8zm6 6h-4V5h4v4zm-6 4v8h8v-8h-8zm6 6h-4v-4h4v4z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
     val Palette: ImageVector by lazy {
         ImageVector.Builder("Palette", 24.dp, 24.dp, 24f, 24f)
             .addPath(
                 addPathNodes("M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val ArrowBack: ImageVector by lazy {
+        ImageVector.Builder("ArrowBack", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"),
+                fill = SolidColor(Color(0xFF000000))
+            ).build()
+    }
+
+    val ChevronRight: ImageVector by lazy {
+        ImageVector.Builder("ChevronRight", 24.dp, 24.dp, 24f, 24f)
+            .addPath(
+                addPathNodes("M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"),
                 fill = SolidColor(Color(0xFF000000))
             ).build()
     }

@@ -21,7 +21,17 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
+            implementation(libs.jetbrains.lifecycle.viewmodel)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.koin.core)
+            implementation(libs.koin.core.viewmodel)
+            implementation(libs.koin.compose.viewmodel)
             implementation(projects.core.ui)
+        }
+        androidMain.dependencies {
+            implementation(compose.preview)
         }
     }
 }
@@ -33,5 +43,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+}
+
+compose {
+    resources {
+        packageOfResClass = "kz.kbtu.wsp.feature.files.resources"
     }
 }

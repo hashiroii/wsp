@@ -1,6 +1,7 @@
 package kz.kbtu.wsp.di
 
 import kz.kbtu.wsp.core.ui.ThemeManager
+import kz.kbtu.wsp.feature.files.FilesViewModel
 import kz.kbtu.wsp.feature.home.HomeViewModel
 import kz.kbtu.wsp.feature.profile.ProfileViewModel
 import kz.kbtu.wsp.feature.schedule.ScheduleViewModel
@@ -14,4 +15,5 @@ val appModule = module {
     viewModelOf(::ScheduleViewModel)
     viewModelOf(::ProfileViewModel)
     viewModelOf(::SettingsViewModel)
+    viewModelOf(::FilesViewModel)
 }

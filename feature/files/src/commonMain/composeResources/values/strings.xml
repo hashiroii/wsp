@@ -1,0 +1,7 @@
+<resources>
+    <string name="files_title">Files</string>
+    <string name="files_empty">This folder is empty</string>
+    <string name="files_navigate_back">Navigate back</string>
+    <string name="files_toggle_grid">Grid view</string>
+    <string name="files_toggle_list">List view</string>
+</resources>
