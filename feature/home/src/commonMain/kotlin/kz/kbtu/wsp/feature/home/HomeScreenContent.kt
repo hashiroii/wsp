@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -28,7 +30,9 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -36,13 +40,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import kz.kbtu.wsp.core.domain.model.NewsItem
 import kz.kbtu.wsp.feature.home.resources.Res
 import kz.kbtu.wsp.feature.home.resources.attendance_active
 import kz.kbtu.wsp.feature.home.resources.attendance_no_active
 import kz.kbtu.wsp.feature.home.resources.gpa_overall
 import kz.kbtu.wsp.feature.home.resources.grades_attestation
 import kz.kbtu.wsp.feature.home.resources.grades_transcript
-import kz.kbtu.wsp.feature.home.resources.news_placeholder
 import kz.kbtu.wsp.feature.home.resources.quick_coming_soon
 import kz.kbtu.wsp.feature.home.resources.quick_financial
 import kz.kbtu.wsp.feature.home.resources.quick_lost_found
@@ -56,6 +60,7 @@ import kz.kbtu.wsp.feature.home.resources.current_week
 import kz.kbtu.wsp.feature.home.resources.section_news
 import kz.kbtu.wsp.feature.home.resources.section_registration
 import kz.kbtu.wsp.core.ui.theme.WspTheme
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -72,7 +77,11 @@ fun HomeScreenContent(
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        NewsCard(onClick = { onIntent(HomeIntent.OnNewsClick) })
+        NewsCarousel(
+            news = state.pinnedNews,
+            onNewsClick = { onIntent(HomeIntent.OnNewsItemClick(it)) },
+            onViewAll = { onIntent(HomeIntent.OnViewAllNewsClick) }
+        )
         if (state.currentWeek > 0) {
             Text(
                 text = stringResource(Res.string.current_week, state.currentWeek),
@@ -93,37 +102,86 @@ fun HomeScreenContent(
 }
 
 @Composable
-private fun NewsCard(onClick: () -> Unit) {
-    Card(
-        onClick = onClick,
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
-        modifier = Modifier.fillMaxWidth()
-    ) {
+private fun NewsCarousel(
+    news: List<NewsItem>,
+    onNewsClick: (String) -> Unit,
+    onViewAll: () -> Unit
+) {
+    if (news.isEmpty()) return
+    val pagerState = rememberPagerState { news.size }
+
+    LaunchedEffect(pagerState.pageCount) {
+        while (true) {
+            delay(4000L)
+            val next = (pagerState.currentPage + 1) % pagerState.pageCount
+            pagerState.animateScrollToPage(next)
+        }
+    }
+
+    Column {
         Row(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = stringResource(Res.string.section_news),
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f)
-                )
-                Spacer(Modifier.height(4.dp))
-                Text(
-                    text = stringResource(Res.string.news_placeholder),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    maxLines = 3,
-                    overflow = TextOverflow.Ellipsis
+            Text(
+                text = stringResource(Res.string.section_news),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.weight(1f)
+            )
+            TextButton(onClick = onViewAll) {
+                Text("See all", style = MaterialTheme.typography.labelMedium)
+            }
+        }
+        HorizontalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxWidth()
+        ) { page ->
+            val item = news[page]
+            Card(
+                onClick = { onNewsClick(item.id) },
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 2.dp)
+            ) {
+                Row(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = "!",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.padding(end = 10.dp, top = 2.dp)
+                    )
+                    Text(
+                        text = item.title,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        maxLines = 3,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            repeat(news.size) { index ->
+                val selected = pagerState.currentPage == index
+                Box(
+                    modifier = Modifier
+                        .padding(horizontal = 3.dp)
+                        .size(if (selected) 8.dp else 6.dp)
+                        .background(
+                            color = if (selected) MaterialTheme.colorScheme.primary
+                                    else MaterialTheme.colorScheme.outline,
+                            shape = CircleShape
+                        )
                 )
             }
-            Spacer(Modifier.width(8.dp))
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onPrimary
-            )
         }
     }
 }

@@ -23,7 +23,8 @@ fun HomeScreen(
                 HomeIntent.OnCourseRegistrationClick,
                 HomeIntent.OnAddDropClick,
                 HomeIntent.OnFinancialClick,
-                HomeIntent.OnNewsClick,
+                is HomeIntent.OnNewsItemClick,
+                HomeIntent.OnViewAllNewsClick,
                 HomeIntent.OnAttendanceClick,
                 HomeIntent.OnMapClick,
                 HomeIntent.OnLostFoundClick -> onNavigate(intent)

@@ -52,6 +52,7 @@ kotlin {
             implementation(projects.feature.financial)
             implementation(projects.feature.grades)
             implementation(projects.feature.registration)
+            implementation(projects.feature.news)
             implementation(libs.navigation.compose)
             implementation(libs.kotlinx.serialization.core)
             implementation(libs.koin.core)

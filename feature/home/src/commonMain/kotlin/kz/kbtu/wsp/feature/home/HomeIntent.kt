@@ -1,7 +1,8 @@
 package kz.kbtu.wsp.feature.home
 
 sealed class HomeIntent {
-    data object OnNewsClick : HomeIntent()
+    data class OnNewsItemClick(val newsId: String) : HomeIntent()
+    data object OnViewAllNewsClick : HomeIntent()
     data object OnAttendanceClick : HomeIntent()
     data object OnAttestationClick : HomeIntent()
     data object OnTranscriptClick : HomeIntent()

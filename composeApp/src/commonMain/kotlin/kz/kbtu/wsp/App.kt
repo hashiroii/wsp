@@ -31,7 +31,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.foundation.isSystemInDarkTheme
 import kz.kbtu.wsp.core.ui.ThemePreference
 import kz.kbtu.wsp.core.ui.ThemeManager
+import kz.kbtu.wsp.feature.news.NewsDetailScreen
+import kz.kbtu.wsp.feature.news.NewsListScreen
 import kz.kbtu.wsp.util.openNotificationSettings
+import kz.kbtu.wsp.util.openUrl
 import kz.kbtu.wsp.util.setLocale
 import org.koin.compose.koinInject
 import androidx.navigation.NavDestination.Companion.hasRoute
@@ -39,6 +42,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import kz.kbtu.wsp.core.ui.icons.WspIcons
 import kz.kbtu.wsp.core.ui.theme.WspTheme
 import kz.kbtu.wsp.feature.files.FilesScreen
@@ -126,6 +130,8 @@ fun App() {
             currentDest?.hasRoute(Route.FxRegistration::class) == true -> "FX Registration"
             currentDest?.hasRoute(Route.CourseRegistration::class) == true -> "Course Registration"
             currentDest?.hasRoute(Route.AddDrop::class) == true -> "Add / Drop"
+            currentDest?.hasRoute(Route.News::class) == true -> "News"
+            currentDest?.hasRoute(Route.NewsDetail::class) == true -> ""
             else -> stringResource(Res.string.top_bar_home)
         }
 
@@ -135,9 +141,11 @@ fun App() {
             it.hasRoute(Route.Files::class)
         } ?: true
 
+        val hideTopBar = currentDest?.hasRoute(Route.NewsDetail::class) == true
+
         Scaffold(
             topBar = {
-                TopAppBar(
+                if (!hideTopBar) TopAppBar(
                     title = { Text(title) },
                     navigationIcon = {
                         if (!showBottomBar) {
@@ -222,6 +230,9 @@ fun App() {
                             HomeIntent.OnFxRegistrationClick -> navController.navigate(Route.FxRegistration)
                             HomeIntent.OnCourseRegistrationClick -> navController.navigate(Route.CourseRegistration)
                             HomeIntent.OnAddDropClick -> navController.navigate(Route.AddDrop)
+                            HomeIntent.OnLostFoundClick -> openUrl("https://t.me/+WUNVYDt2ohFjNzA6")
+                            HomeIntent.OnViewAllNewsClick -> navController.navigate(Route.News)
+                            is HomeIntent.OnNewsItemClick -> navController.navigate(Route.NewsDetail(intent.newsId))
                             else -> {}
                         }
                     })
@@ -238,6 +249,20 @@ fun App() {
                 composable<Route.FxRegistration> { FxRegistrationScreen() }
                 composable<Route.CourseRegistration> { CourseRegistrationScreen() }
                 composable<Route.AddDrop> { AddDropScreen() }
+                composable<Route.News> {
+                    NewsListScreen(
+                        onNewsClick = { newsId -> navController.navigate(Route.NewsDetail(newsId)) },
+                        onCommentClick = { newsId -> navController.navigate(Route.NewsDetail(newsId, openKeyboard = true)) }
+                    )
+                }
+                composable<Route.NewsDetail> { backStackEntry ->
+                    val route = backStackEntry.toRoute<Route.NewsDetail>()
+                    NewsDetailScreen(
+                        newsId = route.newsId,
+                        openKeyboard = route.openKeyboard,
+                        onBack = { navController.navigateUp() }
+                    )
+                }
             }
         }
     }

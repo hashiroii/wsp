@@ -14,4 +14,6 @@ sealed interface Route {
     @Serializable data object FxRegistration : Route
     @Serializable data object CourseRegistration : Route
     @Serializable data object AddDrop : Route
+    @Serializable data object News : Route
+    @Serializable data class NewsDetail(val newsId: String, val openKeyboard: Boolean = false) : Route
 }
