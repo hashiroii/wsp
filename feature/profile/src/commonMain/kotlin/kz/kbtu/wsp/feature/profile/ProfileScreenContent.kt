@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -77,13 +75,13 @@ import kz.kbtu.wsp.feature.profile.resources.profile_yes
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
-// label / primary value / optional EN translation / optional dimmed secondary line / bold flag
 private data class FieldData(
     val label: String,
     val value: String,
     val valueEn: String? = null,
     val secondary: String? = null,
-    val bold: Boolean = false
+    val bold: Boolean = false,
+    val icon: ImageVector? = null
 )
 
 private data class SectionItem(
@@ -116,9 +114,7 @@ fun ProfileScreenContent(
     val dorm = stringResource(Res.string.profile_field_dorm)
 
     LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.surfaceVariant),
+        modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -132,28 +128,43 @@ fun ProfileScreenContent(
         item {
             ProfileInfoSection(
                 title = stringResource(Res.string.profile_section_personal),
+                icon = WspIcons.Person,
                 fields = buildList {
                     add(FieldData(
-                        stringResource(Res.string.profile_field_first_name),
-                        profile.firstName,
-                        profile.firstNameEn.takeIf { it.isNotEmpty() }
+                        label = stringResource(Res.string.profile_field_first_name),
+                        value = profile.firstName,
+                        icon = WspIcons.Person
                     ))
                     add(FieldData(
-                        stringResource(Res.string.profile_field_last_name),
-                        profile.lastName,
-                        profile.lastNameEn.takeIf { it.isNotEmpty() }
+                        label = stringResource(Res.string.profile_field_last_name),
+                        value = profile.lastName
                     ))
                     profile.middleName?.takeIf { it.isNotEmpty() }?.let {
                         add(FieldData(
-                            stringResource(Res.string.profile_field_middle_name),
-                            it,
-                            profile.middleNameEn
+                            label = stringResource(Res.string.profile_field_middle_name),
+                            value = it
                         ))
                     }
-                    add(FieldData(stringResource(Res.string.profile_field_iin), profile.iin))
-                    add(FieldData(stringResource(Res.string.profile_field_birth_date), profile.birthDate))
-                    add(FieldData(stringResource(Res.string.profile_field_sex), profile.sex))
-                    add(FieldData(stringResource(Res.string.profile_field_marital_status), profile.maritalStatus))
+                    add(FieldData(
+                        label = stringResource(Res.string.profile_field_iin),
+                        value = profile.iin,
+                        icon = WspIcons.Description
+                    ))
+                    add(FieldData(
+                        label = stringResource(Res.string.profile_field_birth_date),
+                        value = profile.birthDate,
+                        icon = WspIcons.CalendarToday
+                    ))
+                    add(FieldData(
+                        label = stringResource(Res.string.profile_field_sex),
+                        value = profile.sex,
+                        icon = WspIcons.Person
+                    ))
+                    add(FieldData(
+                        label = stringResource(Res.string.profile_field_marital_status),
+                        value = profile.maritalStatus,
+                        icon = WspIcons.Ring
+                    ))
                 }
             )
         }
@@ -161,26 +172,45 @@ fun ProfileScreenContent(
         item {
             ProfileInfoSection(
                 title = stringResource(Res.string.profile_section_academic),
+                icon = WspIcons.School,
                 fields = listOf(
-                    FieldData(stringResource(Res.string.profile_field_student_id), profile.studentId, bold = true),
-                    FieldData(stringResource(Res.string.profile_field_login), profile.login, bold = true),
-                    FieldData(stringResource(Res.string.profile_field_nationality), profile.nationality),
+                    FieldData(
+                        label = stringResource(Res.string.profile_field_student_id),
+                        value = profile.studentId,
+                        icon = WspIcons.Assignment
+                    ),
+                    FieldData(
+                        label = stringResource(Res.string.profile_field_login),
+                        value = profile.login,
+                        icon = WspIcons.Person
+                    ),
+                    FieldData(
+                        label = stringResource(Res.string.profile_field_nationality),
+                        value = profile.nationality,
+                        icon = WspIcons.Language
+                    ),
                     FieldData(
                         label = stringResource(Res.string.profile_field_citizenship),
                         value = profile.citizenship,
-                        secondary = "$resident: ${if (profile.isResident) yes else no}"
+                        secondary = "$resident: ${if (profile.isResident) yes else no}",
+                        icon = WspIcons.Language
                     ),
                     FieldData(
                         label = stringResource(Res.string.profile_field_category),
                         value = profile.category,
-                        secondary = "$dorm: ${if (profile.needsDorm) yes else no}"
+                        secondary = "$dorm: ${if (profile.needsDorm) yes else no}",
+                        icon = WspIcons.Group
                     ),
-                    FieldData(stringResource(Res.string.profile_field_entrance_year), formatEntranceYear(profile.entranceYear)),
+                    FieldData(
+                        label = stringResource(Res.string.profile_field_entrance_year),
+                        value = formatEntranceYear(profile.entranceYear),
+                        icon = WspIcons.School
+                    ),
                     FieldData(
                         label = stringResource(Res.string.profile_field_study_form),
                         value = profile.studyType,
                         secondary = profile.studyForm.takeIf { it.isNotEmpty() },
-                        bold = true
+                        icon = WspIcons.Book
                     )
                 )
             )
@@ -189,10 +219,23 @@ fun ProfileScreenContent(
         item {
             ProfileInfoSection(
                 title = stringResource(Res.string.profile_section_contact),
+                icon = WspIcons.Phone,
                 fields = listOf(
-                    FieldData(stringResource(Res.string.profile_field_email), profile.email),
-                    FieldData(stringResource(Res.string.profile_field_email_kbtu), profile.emailKbtu, bold = true),
-                    FieldData(stringResource(Res.string.profile_field_phone), profile.mobilePhone, bold = true)
+                    FieldData(
+                        label = stringResource(Res.string.profile_field_email),
+                        value = profile.email,
+                        icon = WspIcons.Email
+                    ),
+                    FieldData(
+                        label = stringResource(Res.string.profile_field_email_kbtu),
+                        value = profile.emailKbtu,
+                        icon = WspIcons.Email
+                    ),
+                    FieldData(
+                        label = stringResource(Res.string.profile_field_phone),
+                        value = profile.mobilePhone,
+                        icon = WspIcons.Phone
+                    )
                 )
             )
         }
@@ -295,20 +338,30 @@ private fun ProfileAvatar(
 @Composable
 private fun ProfileInfoSection(
     title: String,
+    icon: ImageVector,
     fields: List<FieldData>,
     modifier: Modifier = Modifier
 ) {
     ElevatedCard(modifier = modifier.fillMaxWidth()) {
         Column(horizontalAlignment = Alignment.Start) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, top = 14.dp, bottom = 10.dp)
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+            ) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(20.dp)
+                )
+                Spacer(modifier = Modifier.size(8.dp))
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.SemiBold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
             HorizontalDivider()
             fields.forEachIndexed { i, field ->
                 ProfileInfoField(field)
@@ -325,59 +378,53 @@ private fun ProfileInfoField(
     field: FieldData,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 10.dp),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.spacedBy(2.dp)
+            .padding(horizontal = 16.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Text(
-            text = field.label,
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Start
-        )
-        Text(
-            text = field.value,
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = if (field.bold) FontWeight.Bold else FontWeight.Medium,
-            color = MaterialTheme.colorScheme.onSurface,
-            textAlign = TextAlign.Start
-        )
-        if (field.valueEn != null) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
-                modifier = Modifier.padding(top = 1.dp)
-            ) {
-                Text(
-                    text = "EN",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier
-                        .background(
-                            color = MaterialTheme.colorScheme.primaryContainer,
-                            shape = RoundedCornerShape(4.dp)
-                        )
-                        .padding(horizontal = 5.dp, vertical = 1.dp)
-                )
+        if (field.icon != null) {
+            Icon(
+                imageVector = field.icon,
+                contentDescription = null,
+                modifier = Modifier.size(20.dp),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        } else {
+            Spacer(modifier = Modifier.size(20.dp))
+        }
+        Column(
+            modifier = Modifier.weight(1f),
+            horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.spacedBy(2.dp)
+        ) {
+            Text(
+                text = field.label,
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Text(
+                text = field.value,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = if (field.bold) FontWeight.SemiBold else FontWeight.Normal,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            if (field.valueEn != null) {
                 Text(
                     text = field.valueEn,
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Start
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
-        }
-        if (field.secondary != null) {
-            Text(
-                text = field.secondary,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                textAlign = TextAlign.Start,
-                modifier = Modifier.padding(top = 1.dp)
-            )
+            if (field.secondary != null) {
+                Text(
+                    text = field.secondary,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 }
@@ -424,14 +471,14 @@ private fun ProfileSectionCard(
 
     Card(
         onClick = onClick,
-        modifier = modifier.aspectRatio(1f),
+        modifier = modifier.height(84.dp),
         colors = CardDefaults.cardColors(containerColor = containerColor),
         elevation = CardDefaults.cardElevation(defaultElevation = if (isActive) 4.dp else 1.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(8.dp),
+                .padding(horizontal = 8.dp, vertical = 10.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
