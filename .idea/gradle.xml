@@ -16,7 +16,15 @@
             <option value="$PROJECT_DIR$/core/domain" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/files" />
+            <option value="$PROJECT_DIR$/feature/financial" />
+            <option value="$PROJECT_DIR$/feature/grades" />
             <option value="$PROJECT_DIR$/feature/home" />
+            <option value="$PROJECT_DIR$/feature/news" />
+            <option value="$PROJECT_DIR$/feature/profile" />
+            <option value="$PROJECT_DIR$/feature/registration" />
+            <option value="$PROJECT_DIR$/feature/schedule" />
+            <option value="$PROJECT_DIR$/feature/settings" />
           </set>
         </option>
       </GradleProjectSettings>
