@@ -1,0 +1,7 @@
+<resources>
+    <string name="files_title">Файлдар</string>
+    <string name="files_empty">Бұл қалта бос</string>
+    <string name="files_navigate_back">Артқа қайту</string>
+    <string name="files_toggle_grid">Тор түрінде көру</string>
+    <string name="files_toggle_list">Тізім түрінде көру</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="files_title">Файлы</string>
+    <string name="files_empty">Эта папка пуста</string>
+    <string name="files_navigate_back">Назад</string>
+    <string name="files_toggle_grid">Вид сеткой</string>
+    <string name="files_toggle_list">Вид списком</string>
+</resources>
