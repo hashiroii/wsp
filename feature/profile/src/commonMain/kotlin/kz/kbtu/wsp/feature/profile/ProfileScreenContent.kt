@@ -251,7 +251,7 @@ fun ProfileScreenContent(
                 )
                 ProfileSectionGrid(
                     sections = listOf(
-                        SectionItem(ProfileSection.MainInfo, WspIcons.Person, stringResource(Res.string.profile_nav_main_info), isActive = true),
+                        SectionItem(ProfileSection.MainInfo, WspIcons.Person, stringResource(Res.string.profile_nav_main_info)),
                         SectionItem(ProfileSection.EducationDirection, WspIcons.School, stringResource(Res.string.profile_nav_edu_direction)),
                         SectionItem(ProfileSection.Education, WspIcons.Book, stringResource(Res.string.profile_nav_education)),
                         SectionItem(ProfileSection.Documents, WspIcons.Description, stringResource(Res.string.profile_nav_documents)),
@@ -260,7 +260,7 @@ fun ProfileScreenContent(
                         SectionItem(ProfileSection.Unt, WspIcons.Assignment, stringResource(Res.string.profile_nav_unt)),
                         SectionItem(ProfileSection.ParentsInfo, WspIcons.Group, stringResource(Res.string.profile_nav_parents)),
                         SectionItem(ProfileSection.OtherDocuments, WspIcons.Folder, stringResource(Res.string.profile_nav_other_docs))
-                    ),
+                    ).map { it.copy(isActive = it.section == state.activeSection) },
                     onSectionClick = { onIntent(ProfileIntent.NavigateToSection(it)) }
                 )
             }

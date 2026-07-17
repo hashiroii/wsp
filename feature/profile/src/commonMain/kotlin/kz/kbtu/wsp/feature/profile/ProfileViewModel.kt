@@ -42,7 +42,7 @@ class ProfileViewModel : ViewModel() {
         when (intent) {
             ProfileIntent.ShowPhotoPreview -> _state.update { it.copy(showPhotoPreview = true) }
             ProfileIntent.DismissPhotoPreview -> _state.update { it.copy(showPhotoPreview = false) }
-            is ProfileIntent.NavigateToSection -> Unit
+            is ProfileIntent.NavigateToSection -> _state.update { it.copy(activeSection = intent.section) }
         }
     }
 }
