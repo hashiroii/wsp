@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.update
 class FilesViewModel : ViewModel() {
 
     private val _state = MutableStateFlow(
-        FilesState(isLoading = false, contents = mockContents(null))
+        FilesState(contents = mockContents(null))
     )
     val state: StateFlow<FilesState> = _state.asStateFlow()
 

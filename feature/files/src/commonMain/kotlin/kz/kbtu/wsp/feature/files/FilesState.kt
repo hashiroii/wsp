@@ -4,7 +4,6 @@ data class FilesState(
     // Stack of folders the user has opened. Empty = root (schools list).
     val backStack: List<FilesNavEntry> = emptyList(),
     val contents: FolderContents = FolderContents(),
-    val isLoading: Boolean = true,
     val viewMode: FileViewMode = FileViewMode.List
 ) {
     val currentFolderName: String? get() = backStack.lastOrNull()?.name
