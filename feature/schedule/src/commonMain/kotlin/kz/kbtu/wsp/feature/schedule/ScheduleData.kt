@@ -61,7 +61,7 @@ data class ExamEntry(
     val room: String
 )
 
-val SCHEDULE_HOURS: List<String> = (8..21).map { h -> "${if (h < 10) "0$h" else "$h"}:00" }
+val SCHEDULE_HOURS: List<String> = (8..22).map { h -> "${if (h < 10) "0$h" else "$h"}:00" }
 
 fun currentAcademicYear(): AcademicYear {
     val year = currentYear()
