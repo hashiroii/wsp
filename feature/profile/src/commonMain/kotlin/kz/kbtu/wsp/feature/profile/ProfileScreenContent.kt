@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import kz.kbtu.wsp.core.domain.model.ProfileData
 import kz.kbtu.wsp.core.ui.icons.WspIcons
 import kz.kbtu.wsp.feature.profile.resources.Res
 import kz.kbtu.wsp.feature.profile.resources.profile_field_birth_date

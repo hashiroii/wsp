@@ -1,4 +1,4 @@
-package kz.kbtu.wsp.feature.profile
+package kz.kbtu.wsp.core.domain.model
 
 data class ProfileData(
     val photoUrl: String? = null,

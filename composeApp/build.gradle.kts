@@ -44,6 +44,8 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(projects.core.ui)
+            implementation(projects.core.domain)
+            implementation(projects.core.data)
             implementation(projects.feature.home)
             implementation(projects.feature.settings)
             implementation(projects.feature.profile)
