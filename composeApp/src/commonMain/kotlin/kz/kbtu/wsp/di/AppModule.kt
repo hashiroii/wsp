@@ -1,6 +1,8 @@
 package kz.kbtu.wsp.di
 
+import kz.kbtu.wsp.core.data.repository.FakeNewsRepository
 import kz.kbtu.wsp.core.data.repository.FakeProfileRepository
+import kz.kbtu.wsp.core.domain.repository.NewsRepository
 import kz.kbtu.wsp.core.domain.repository.ProfileRepository
 import kz.kbtu.wsp.core.ui.ThemeManager
 import kz.kbtu.wsp.feature.files.FilesViewModel
@@ -16,6 +18,7 @@ import org.koin.dsl.module
 val appModule = module {
     single { ThemeManager() }
     single<ProfileRepository> { FakeProfileRepository() }
+    single<NewsRepository> { FakeNewsRepository() }
     viewModelOf(::HomeViewModel)
     viewModelOf(::ScheduleViewModel)
     viewModelOf(::ProfileViewModel)

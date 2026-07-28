@@ -1,13 +1,18 @@
 package kz.kbtu.wsp.feature.news
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kz.kbtu.wsp.core.domain.model.NewsComment
+import kz.kbtu.wsp.core.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class NewsDetailViewModel : ViewModel() {
+class NewsDetailViewModel(
+    private val newsRepository: NewsRepository
+) : ViewModel() {
 
     private val _state = MutableStateFlow(NewsDetailState())
     val state: StateFlow<NewsDetailState> = _state.asStateFlow()
@@ -15,12 +20,16 @@ class NewsDetailViewModel : ViewModel() {
     private var commentCounter = 0
 
     fun load(newsId: String, openKeyboard: Boolean) {
-        _state.update {
-            it.copy(
-                news = MOCK_ALL_NEWS.find { n -> n.id == newsId },
-                comments = MOCK_COMMENTS[newsId] ?: emptyList(),
-                openKeyboard = openKeyboard
-            )
+        viewModelScope.launch {
+            val news = newsRepository.getAllNews().find { it.id == newsId }
+            val comments = newsRepository.getComments(newsId)
+            _state.update {
+                it.copy(
+                    news = news,
+                    comments = comments,
+                    openKeyboard = openKeyboard
+                )
+            }
         }
     }
 
