@@ -1,5 +1,9 @@
 package kz.kbtu.wsp.feature.schedule
 
+import kz.kbtu.wsp.core.domain.model.ClassEntry
+import kz.kbtu.wsp.core.domain.model.ExamEntry
+import kz.kbtu.wsp.core.domain.model.ScheduleDay
+
 data class ScheduleState(
     val activeTab: ScheduleTab = ScheduleTab.Student,
     val selectedYear: AcademicYear = AcademicYear(2025),

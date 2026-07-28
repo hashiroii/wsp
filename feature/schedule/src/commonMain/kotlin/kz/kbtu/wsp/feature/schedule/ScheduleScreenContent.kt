@@ -45,6 +45,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import kz.kbtu.wsp.core.domain.model.ClassEntry
+import kz.kbtu.wsp.core.domain.model.ClassType
+import kz.kbtu.wsp.core.domain.model.ExamEntry
+import kz.kbtu.wsp.core.domain.model.ScheduleDay
 import kz.kbtu.wsp.core.ui.icons.WspIcons
 import kz.kbtu.wsp.core.ui.theme.WspTheme
 import kz.kbtu.wsp.feature.schedule.resources.Res

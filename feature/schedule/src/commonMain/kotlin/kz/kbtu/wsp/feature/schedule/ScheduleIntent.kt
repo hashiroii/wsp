@@ -1,5 +1,7 @@
 package kz.kbtu.wsp.feature.schedule
 
+import kz.kbtu.wsp.core.domain.model.ScheduleDay
+
 sealed class ScheduleIntent {
     data class SelectTab(val tab: ScheduleTab) : ScheduleIntent()
     data class SelectYear(val year: AcademicYear) : ScheduleIntent()

@@ -1,6 +1,8 @@
 package kz.kbtu.wsp.feature.schedule
 
 import androidx.compose.ui.graphics.Color
+import kz.kbtu.wsp.core.domain.model.ClassType
+import kz.kbtu.wsp.core.domain.model.ScheduleDay
 
 data class AcademicYear(val startYear: Int) {
     val label: String get() = "$startYear–${startYear + 1}"
@@ -20,46 +22,21 @@ enum class AcademicTerm {
         }
 }
 
-enum class ScheduleDay { Mon, Tue, Wed, Thu, Fri, Sat, Sun }
+val ClassType.accentColor: Color
+    get() = when (this) {
+        ClassType.Lecture  -> Color(0xFF1565C0)
+        ClassType.Seminar  -> Color(0xFF2E7D32)
+        ClassType.Lab      -> Color(0xFFE65100)
+        ClassType.Practice -> Color(0xFF6A1B9A)
+    }
 
-enum class ClassType {
-    Lecture, Seminar, Lab, Practice;
-
-    val accentColor: Color
-        get() = when (this) {
-            Lecture  -> Color(0xFF1565C0)
-            Seminar  -> Color(0xFF2E7D32)
-            Lab      -> Color(0xFFE65100)
-            Practice -> Color(0xFF6A1B9A)
-        }
-
-    val containerColor: Color
-        get() = when (this) {
-            Lecture  -> Color(0xFFE3F2FD)
-            Seminar  -> Color(0xFFE8F5E9)
-            Lab      -> Color(0xFFFFF3E0)
-            Practice -> Color(0xFFF3E5F5)
-        }
-}
-
-data class ClassEntry(
-    val id: String,
-    val day: ScheduleDay,
-    val startTime: String,
-    val subject: String,
-    val type: ClassType,
-    val room: String,
-    val professor: String
-)
-
-data class ExamEntry(
-    val id: String,
-    val date: String,
-    val startTime: String,
-    val endTime: String,
-    val subject: String,
-    val room: String
-)
+val ClassType.containerColor: Color
+    get() = when (this) {
+        ClassType.Lecture  -> Color(0xFFE3F2FD)
+        ClassType.Seminar  -> Color(0xFFE8F5E9)
+        ClassType.Lab      -> Color(0xFFFFF3E0)
+        ClassType.Practice -> Color(0xFFF3E5F5)
+    }
 
 val SCHEDULE_HOURS: List<String> = (8..22).map { h -> "${if (h < 10) "0$h" else "$h"}:00" }
 
