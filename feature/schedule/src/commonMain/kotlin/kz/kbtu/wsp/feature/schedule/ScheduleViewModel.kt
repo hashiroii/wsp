@@ -30,7 +30,7 @@ class ScheduleViewModel(
                 it.copy(
                     studentEntries = studentEntries,
                     examEntries = examEntries,
-                    selectedExamDate = examEntries.firstOrNull()?.date
+                    selectedExamDate = it.selectedExamDate ?: examEntries.firstOrNull()?.date
                 )
             }
         }
