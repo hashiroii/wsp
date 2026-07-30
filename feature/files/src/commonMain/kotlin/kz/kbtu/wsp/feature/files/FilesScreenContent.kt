@@ -37,6 +37,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kz.kbtu.wsp.core.domain.model.FilesFile
+import kz.kbtu.wsp.core.domain.model.FilesFolder
+import kz.kbtu.wsp.core.domain.model.FolderContents
 import kz.kbtu.wsp.core.ui.icons.WspIcons
 import kz.kbtu.wsp.feature.files.resources.Res
 import kz.kbtu.wsp.feature.files.resources.files_empty

@@ -29,6 +29,7 @@ kotlin {
             implementation(libs.koin.core.viewmodel)
             implementation(libs.koin.compose.viewmodel)
             implementation(projects.core.ui)
+            implementation(projects.core.domain)
         }
         androidMain.dependencies {
             implementation(compose.preview)
