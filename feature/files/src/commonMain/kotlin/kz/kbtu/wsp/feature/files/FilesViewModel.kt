@@ -2,6 +2,7 @@ package kz.kbtu.wsp.feature.files
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,6 +16,8 @@ class FilesViewModel(
 
     private val _state = MutableStateFlow(FilesState())
     val state: StateFlow<FilesState> = _state.asStateFlow()
+
+    private var loadJob: Job? = null
 
     init {
         loadFolder(null)
@@ -42,7 +45,8 @@ class FilesViewModel(
     }
 
     private fun loadFolder(folderId: String?) {
-        viewModelScope.launch {
+        loadJob?.cancel()
+        loadJob = viewModelScope.launch {
             val contents = filesRepository.getFolderContents(folderId)
             _state.update { it.copy(contents = contents) }
         }
